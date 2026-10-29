@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopNhom8.com - Mua Sắm Đồ Công Nghệ & Tiện Ích Trực Tuyến</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f8fafc;
+      color: #1e293b;
+    }
+
+    /* Thanh thông báo đầu trang */
+    .top-bar {
+      background: #1e1b4b;
+      color: #e0e7ff;
+      text-align: center;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .top-bar span {
+      color: #fbbf24;
+      font-weight: bold;
+    }
+
+    /* Container chuẩn */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header chuẩn hình ảnh */
+    header {
+      background: #ffffff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 76px;
+    }
+
+    /* Logo ShopNhom8.com */
+    .logo {
+      font-size: 30px;
+      font-weight: 900;
+      color: #1e3a8a;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .logo span.com {
+      color: #6366f1;
+      font-weight: 800;
+    }
+    .logo span.highlight {
+      color: #ec4899;
+    }
+
+    /* Navigation Links */
+    .nav-menu {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-menu a {
+      text-decoration: none;
+      color: #2563eb;
+      font-size: 16px;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+    .nav-menu a:hover {
+      color: #4f46e5;
+    }
+
+    /* Nút Giỏ Hàng tím tròn chuẩn ảnh */
+    .cart-btn {
+      background: #f3e8ff;
+      color: #7e22ce;
+      border: 1px solid #d8b4fe;
+      padding: 10px 24px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .cart-btn:hover {
+      background: #e9d5ff;
+      transform: scale(1.03);
+    }
+    .cart-count {
+      background: #7e22ce;
+      color: #ffffff;
+      border-radius: 50%;
+      padding: 2px 8px;
+      font-size: 13px;
+    }
+
+    /* Hero Banner Tím Rực Rỡ (Y hệt ảnh của bạn) */
+    .hero-banner {
+      background: linear-gradient(135deg, #6366f1 0%, #581c87 100%);
+      color: #ffffff;
+      text-align: center;
+      padding: 70px 20px 80px;
+      border-bottom: 7px solid #ec4899; /* Thanh viền hồng neon */
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.25);
+    }
+
+    .hero-banner h1 {
+      font-size: 54px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero-banner p {
+      font-size: 20px;
+      max-width: 780px;
+      margin: 0 auto 34px;
+      font-weight: 400;
+      color: #f1f5f9;
+      line-height: 1.5;
+    }
+
+    .btn-buy-now {
+      background: #ffffff;
+      color: #2563eb;
+      font-size: 18px;
+      font-weight: 800;
+      padding: 14px 42px;
+      border-radius: 999px;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-buy-now:hover {
+      background: #f8fafc;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      color: #4f46e5;
+    }
+
+    /* Thanh Tiện Ích Bán Hàng */
+    .perks-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: -25px auto 40px;
+      background: #ffffff;
+      padding: 22px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    }
+    .perk-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 12px;
+      border-right: 1px solid #e2e8f0;
+    }
+    .perk-item:last-child { border-right: none; }
+    .perk-icon { font-size: 26px; }
+    .perk-info h4 { font-size: 14px; font-weight: 700; color: #0f172a; }
+    .perk-info p { font-size: 12px; color: #64748b; }
+
+    /* Section Sản Phẩm Nổi Bật */
+    .section-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .section-header h2 {
+      font-size: 34px;
+      font-weight: 900;
+      color: #1e3a8a;
+    }
+    .section-header h2 span {
+      color: #6366f1;
+    }
+    .section-header p {
+      color: #64748b;
+      font-size: 15px;
+      margin-top: 6px;
+    }
+
+    /* Bộ lọc danh mục */
+    .cat-filter {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 35px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 8px 18px;
+      border-radius: 99px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #475569;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: #4f46e5;
+      color: #ffffff;
+      border-color: #4f46e5;
+    }
+
+    /* Grid Sản Phẩm Bán Hàng */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      margin-bottom: 60px;
+    }
+
+    .product-card {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      padding: 16px;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+      border-color: #c7d2fe;
+    }
+
+    .badge-discount {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: #ef4444;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 6px;
+      z-index: 2;
+    }
+
+    /* Khung vẽ hình sản phẩm (Tự vẽ bằng CSS/SVG không lo lỗi mạng) */
+    .product-thumb {
+      background: #f1f5f9;
+      border-radius: 12px;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 64px;
+    }
+
+    .product-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #6366f1;
+      margin-bottom: 4px;
+    }
+
+    .product-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.35;
+      height: 42px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .product-rating {
+      color: #f59e0b;
+      font-size: 13px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .product-rating span {
+      color: #94a3b8;
+      font-size: 12px;
+    }
+
+    .price-box {
+      margin-top: auto;
+      margin-bottom: 14px;
+    }
+    .price-current {
+      font-size: 18px;
+      font-weight: 800;
+      color: #dc2626;
+    }
+    .price-old {
+      font-size: 13px;
+      color: #94a3b8;
+      text-decoration: line-through;
+      margin-left: 6px;
+    }
+
+    .btn-add-cart {
+      background: #4f46e5;
+      color: #ffffff;
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .btn-add-cart:hover {
+      background: #4338ca;
+    }
+
+    /* Banner Flash Sale Phụ */
+    .flash-deal {
+      background: linear-gradient(90deg, #1e1b4b, #312e81);
+      color: white;
+      border-radius: 20px;
+      padding: 36px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+    .flash-deal h3 {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: #fbbf24;
+    }
+    .flash-deal p {
+      font-size: 15px;
+      color: #cbd5e1;
+    }
+
+    /* Toast thông báo đã thêm hàng */
+    #toast {
+      visibility: hidden;
+      min-width: 280px;
+      background-color: #0f172a;
+      color: #fff;
+      text-align: center;
+      border-radius: 10px;
+      padding: 14px 20px;
+      position: fixed;
+      z-index: 1000;
+      bottom: 30px;
+      right: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      border-left: 5px solid #10b981;
+    }
+    #toast.show {
+      visibility: visible;
+      animation: fadein 0.3s, fadeout 0.3s 2.2s;
+    }
+
+    @keyframes fadein {
+      from { bottom: 0; opacity: 0; }
+      to { bottom: 30px; opacity: 1; }
+    }
+    @keyframes fadeout {
+      from { bottom: 30px; opacity: 1; }
+      to { bottom: 0; opacity: 0; }
+    }
+
+    /* Footer Chuẩn Thương Mại Điện Tử */
+    footer {
+      background: #0f172a;
+      color: #94a3b8;
+      padding: 50px 0 24px;
+      border-top: 4px solid #6366f1;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 36px;
+      margin-bottom: 40px;
+    }
+    .footer-col h4 {
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .footer-col p {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid #1e293b;
+      padding-top: 20px;
+      font-size: 13px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .perks-bar { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .product-grid { grid-template-columns: 1fr; }
+      .nav-menu { display: none; }
+      .hero-banner h1 { font-size: 36px; }
+      .perks-bar { grid-template-columns: 1fr; }
+      .flash-deal { flex-direction: column; text-align: center; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar thông báo sale -->
+  <div class="top-bar">
+    🔥 <span>SIÊU SALE SHOP NHÓM 8:</span> Giảm ngay 10% khi nhập mã <strong>NHOM8</strong> - Miễn phí vận chuyển toàn quốc cho đơn từ 299K!
+  </div>
+
+  <!-- Header: Chuẩn nhận diện hình ảnh của bạn -->
+  <header>
+    <div class="container nav-inner">
+      <a href="#" class="logo">
+        ShopNhom8<span class="com">.com</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="#trangchu">Trang Chủ</a></li>
+        <li><a href="#sanpham">Sản Phẩm</a></li>
+        <li><a href="#khuyenmai">Khuyến Mãi</a></li>
+        <li><a href="#lienhe">Liên Hệ</a></li>
+      </ul>
+
+      <!-- Nút giỏ hàng có bộ đếm tăng thật khi bấm mua -->
+      <a href="#cart" class="cart-btn" onclick="alert('Đơn hàng hiện có: ' + cartCount + ' sản phẩm!'); return false;">
+        🛒 Giỏ Hàng (<span id="cart-counter">0</span>)
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Banner Tím Nổi Bật (Y như thiết kế trong Cisco Packet Tracer của bạn) -->
+  <section class="hero-banner" id="trangchu">
+    <div class="container">
+      <h1>SIÊU SALE MÙA HÈ</h1>
+      <p>Khám phá hàng ngàn sản phẩm công nghệ chính hãng với mức giá ưu đãi nhất.</p>
+      <button class="btn-buy-now" onclick="scrollToProducts()">Mua Sắm Ngay</button>
+    </div>
+  </section>
+
+  <div class="container">
+    
+    <!-- Thanh tiện ích mua sắm uy tín -->
+    <div class="perks-bar">
+      <div class="perk-item">
+        <div class="perk-icon">⚡</div>
+        <div class="perk-info">
+          <h4>Giao Hàng Siêu Tốc</h4>
+          <p>Nhận hàng trong 2 Giờ</p>
+        </div>
+      </div>
+      <div class="perk-item">
+        <div class="perk-icon">🛡️</div>
+        <div class="perk-info">
+          <h4>Chính Hãng 100%</h4>
+          <p>Bảo hành 12 tháng 1 đổi 1</p>
+        </div>
+      </div>
+      <div class="perk-item">
+        <div class="perk-icon">🔄</div>
+        <div class="perk-info">
+          <h4>Đổi Trả Dễ Dàng</h4>
+          <p>Miễn phí trong 7 ngày</p>
+        </div>
+      </div>
+      <div class="perk-item">
+        <div class="perk-icon">💳</div>
+        <div class="perk-info">
+          <h4>Thanh Toán Linh Hoạt</h4>
+          <p>COD, Chuyển khoản, Thẻ</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Sản Phẩm Nổi Bật -->
+    <section id="sanpham">
+      <div class="section-header">
+        <h2>Sản Phẩm <span>Nổi Bật</span></h2>
+        <p>Những thiết bị bán chạy nhất tuần này tại ShopNhom8.com</p>
+      </div>
+
+      <!-- Bộ lọc danh mục -->
+      <div class="cat-filter">
+        <button class="filter-btn active">Tất Cả Sản Phẩm</button>
+        <button class="filter-btn">🎧 Tai Nghe & Loa</button>
+        <button class="filter-btn">⌚ Đồng Hồ Thông Minh</button>
+        <button class="filter-btn">🔌 Củ & Cáp Sạc Nhanh</button>
+        <button class="filter-btn">🏠 Gia Dụng Tiện Ích</button>
+      </div>
+
+      <!-- Danh Sách 8 Sản Phẩm Chuẩn Bán Hàng -->
+      <div class="product-grid">
+
+        <!-- Sản phẩm 1 -->
+        <div class="product-card">
+          <span class="badge-discount">-43%</span>
+          <div class="product-thumb">🎧</div>
+          <div class="product-tag">Âm Thanh Chính Hãng</div>
+          <h3 class="product-title">Tai Nghe Không Dây Bluetooth N8 Pro Chống Ồn</h3>
+          <div class="product-rating">★★★★★ <span>(4.9 • Đã bán 1.2k)</span></div>
+          <div class="price-box">
+            <span class="price-current">450.000₫</span>
+            <span class="price-old">790.000₫</span>
+          </div>
+          <button class="btn-add-cart" onclick="addToCart('Tai Nghe N8 Pro')">
+            🛒 Thêm Vào Giỏ
+          </button>
+        </div>
+
+        <!-- Sản phẩm 2 -->
+        <div class="product-card">
+          <span class="badge-discount">-38%</span>
+          <div class="product-thumb">⌚</div>
+          <div class="product-tag">Smartwatch</div>
+          <h3 class="product-title">Đồng Hồ Thông Minh N8 Ultra Đo Nhịp Tim Kháng Nước</h3>
+          <div class="product-rating">★★★★★ <span>(4.8 • Đã bán 860)</span></div>
+          <div class="price-box">
+            <span class="price-current">890.000₫</span>
+            <span class="price-old">1.450.000₫</span>
+          </div>
+          <button class="btn-add-cart" onclick="addToCart('Đồng Hồ N8 Ultra')">
+            🛒 Thêm Vào Giỏ
+          </button>
+        </div>
+
+        <!-- Sản phẩm 3 -->
+        <div class="product-card">
+          <span class="badge-discount">-42%</span>
+          <div class="product-thumb">🔌</div>
+          <div class="product-tag">Phụ Kiện Điện Thoại</div>
+          <h3 class="product-title">Củ Sạc Nhanh GaN 65W 3 Cổng Tiết Kiệm Thời Gian</h3>
+          <div class="product-rating">★★★★★ <span>(5.0 • Đã bán 2.4k)</span></div>
+          <div class="price-box">
+            <span class="price-current">320.000₫</span>
+            <span class="price-old">550.000₫</span>
+          </div>
+          <button class="btn-add-cart" onclick="addToCart('Củ Sạc GaN 65W')">
+            🛒 Thêm Vào Giỏ
+          </button>
+        </div>
+
+        <!-- Sản phẩm 4 -->
+        <div class="product-card">
+          <span class="badge-discount">-37%</span>
+          <div class="product-thumb">🔊</div>
+          <div class="product-tag">Loa Bluetooth</div>
+          <h3 class="product-title">Loa Không Dây Bass Cực Mạnh N8 Beat Chống Nước IPX7</h3>
+          <div class="product-rating">★★★★★ <span>(4.9 • Đã bán 950)</span></div>
+          <div class="price-box">
+            <span class="price-current">620.000₫</span>
+            <span class="price-old">990.000₫</span>
+          </div>
+          <button class="btn-add-cart" onclick="addToCart('Loa N8 Beat')">
+            🛒 Thêm Vào Giỏ
+          </button>
+        </div>
+
+        <!-- Sản phẩm 5 -->
+        <div class="product-card">
+          <span class="badge-discount">-40%</span>
+          <div class="product-thumb">🔋</div>
+          <div class="product-tag">Pin Dự Phòng</div>
+          <h3 class="product-title">Sạc Dự Phòng 20.000mAh Có Màn Hình LED Báo Pin</h3>
+          <div class="product-rating">★★★★★ <span>(4.9 • Đã bán 1.8k)</span></div>
+          <div class="price-box">
+            <span class="price-current">390.000₫</span>
+            <span class="price-old">650.000₫</span>
+          </div>
+          <button class="btn-add-cart" onclick="addToCart('Pin Dự Phòng 20.000mAh')">
+            🛒 Thêm Vào Giỏ
+          </button>
+        </div>
+
+        <!-- Sản phẩm 6 -->
+        <div class="product-card">
+          <span class="badge-discount">-45%</span>
+          <div class="product-thumb">🧹</div>
+          <div class="product-tag">Gia Dụng Thông Minh</div>
+          <h3 class="product-title">Máy Hút Bụi Mini Cầm Tay Không Dây Siêu Hút</h3>
+          <div class="product-rating">★★★★☆ <span>(4.7 • Đã bán 630)</span></div>
+          <div class="price-box">
+            <span class="price-current">440.000₫</span>
+            <span class="price-old">800.000₫</span>
+          </div>
+          <button class="btn-add-cart" onclick="addToCart('Máy Hút Bụi Cầm Tay')">
+            🛒 Thêm Vào Giỏ
+          </button>
+        </div>
+
+        <!-- Sản phẩm 7 -->
+        <div class="product-card">
+          <span class="badge-discount">-35%</span>
+          <div class="product-thumb">⌨️</div>
+          <div class="product-tag">Gaming & Office</div>
+          <h3 class="product-title">Bàn Phím Cơ Không Dây RGB Nhóm 8 Bản Đặc Biệt</h3>
+          <div class="product-rating">★★★★★ <span>(5.0 • Đã bán 420)</span></div>
+          <div class="price-box">
+            <span class="price-current">780.000₫</span>
+            <span class="price-old">1.200.000₫</span>
+          </div>
+          <button class="btn-add-cart" onclick="addToCart('Bàn Phím Cơ Nhóm 8')">
+            🛒 Thêm Vào Giỏ
+          </button>
+        </div>
+
+        <!-- Sản phẩm 8 -->
+        <div class="product-card">
+          <span class="badge-discount">-43%</span>
+          <div class="product-thumb">🥤</div>
+          <div class="product-tag">Lifestyle</div>
+          <h3 class="product-title">Bình Giữ Nhiệt Thông Minh Hiển Thị Nhiệt Độ Cảm Ứng</h3>
+          <div class="product-rating">★★★★★ <span>(4.8 • Đã bán 2.1k)</span></div>
+          <div class="price-box">
+            <span class="price-current">199.000₫</span>
+            <span class="price-old">350.000₫</span>
+          </div>
+          <button class="btn-add-cart" onclick="addToCart('Bình Giữ Nhiệt LED')">
+            🛒 Thêm Vào Giỏ
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Khung Flash Sale Giờ Vàng -->
+    <div class="flash-deal" id="khuyenmai">
+      <div>
+        <h3>⚡ GIỜ VÀNG GIÁ SỐC - SHOPNHOM8.COM</h3>
+        <p>Nhập mã <strong>NHOM8VIP</strong> để được giảm thêm 50K cho đơn hàng đầu tiên!</p>
+      </div>
+      <button class="btn-buy-now" onclick="scrollToProducts()">Săn Deal Ngay</button>
+    </div>
+
+  </div>
+
+  <!-- Toast thông báo popup khi bấm Mua hàng -->
+  <div id="toast">✅ Đã thêm sản phẩm vào giỏ hàng!</div>
+
+  <!-- Footer Chuẩn Website Thương Mại Điện Tử -->
+  <footer id="lienhe">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h4>Về ShopNhom8.com</h4>
+        <p>Hệ thống bán lẻ thiết bị công nghệ & tiện ích đời sống hàng đầu. Cam kết 100% sản phẩm chính hãng, bảo hành minh bạch và hỗ trợ khách hàng tận tâm.</p>
+        <p>📍 <strong>Địa chỉ kho:</strong> Tòa Nhà Công Nghệ, Quận 1, TP.HCM</p>
+        <p>☎️ <strong>Hotline đặt hàng:</strong> 1900 8888 (8:00 - 22:00)</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Chăm Sóc Khách Hàng</h4>
+        <ul class="footer-links">
+          <li><a href="#">Hướng dẫn mua hàng</a></li>
+          <li><a href="#">Chính sách bảo hành 12T</a></li>
+          <li><a href="#">Quy định đổi trả 7 ngày</a></li>
+          <li><a href="#">Tra cứu vận đơn giao hàng</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Về Doanh Nghiệp</h4>
+        <ul class="footer-links">
+          <li><a href="#">Giới thiệu Nhóm 8</a></li>
+          <li><a href="#">Tuyển dụng nhân tài</a></li>
+          <li><a href="#">Chính sách bảo mật</a></li>
+          <li><a href="#">Liên hệ hợp tác đại lý</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kênh Mua Sắm</h4>
+        <p>🛒 Website: <strong>ShopNhom8.com</strong></p>
+        <p>🛍️ Shopee: <strong>ShopNhom8 Official</strong></p>
+        <p>🎵 TikTok Shop: <strong>@ShopNhom8</strong></p>
+        <p>📘 Fanpage: <strong>Nhóm 8 E-Store</strong></p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 <strong>ShopNhom8.com</strong> - Bản quyền thuộc về Doanh Nghiệp Nhóm 8. Mọi quyền được bảo lưu.</p>
+    </div>
+  </footer>
+
+  <!-- Đoạn Javascript đơn giản, chạy cực tốt trong Packet Tracer -->
+  <script>
+    var cartCount = 0;
+
+    function addToCart(productName) {
+      cartCount++;
+      document.getElementById('cart-counter').innerText = cartCount;
+      
+      var toast = document.getElementById("toast");
+      toast.innerText = "✅ Đã thêm [" + productName + "] vào giỏ hàng (" + cartCount + ")!";
+      toast.className = "show";
+      setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 2500);
+    }
+
+    function scrollToProducts() {
+      var element = document.getElementById("sanpham");
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
